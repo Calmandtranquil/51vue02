@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue2.6.10.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        #app{
+            width: 600px;
+            margin: 0px auto;
+        }
+        ul{
+            overflow: hidden;
+        }
+        li{
+            list-style: none;
+            float: left;
+            width: 25%;
+            border:1px solid #000;
+            text-align: center;
+            background: #ccc;
+            font-size: 18px;
+            line-height: 50px;
+            color: #333;
+        }
+
+        .tabCon{
+            border: 1px solid #000000;
+            height: 300px;
+        }
+        .active{
+            background: darkblue;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li
+                v-for="(item,index) in tabs"
+                :class="{'active':index == num}"
+                @click="tab(index)">{{item}}
+        </li>
+    </ul>
+    <div class="tabCon">
+        <div
+                v-for='(itemCon,index) in tabContents'
+                v-show=" index == num">{{itemCon}}</div>
+    </div>
+    <hr>
+    <ul>
+        <li
+                v-for="(item,index) in list"
+                :class="{'active':index == count}"
+                @click="lists(index)">{{item}}
+        </li>
+    </ul>
+    <div class="tabCon">
+        <div
+                v-for='(itemCon,index) in listContents'
+                v-show=" index == count">{{itemCon}}</div>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            tabs: ["选项卡1", "选项卡2","选项卡3"],
+            tabContents: ["这是选项卡1的内容", "这是选项卡2的内容","这是选项卡3的内容"],
+            list: ["京东超市", "数码电器","服饰美妆","京东生鲜"],
+            listContents: ["这是选项卡1的内容", "这是选项卡2的内容","这是选项卡3的内容","这是选项卡4的内容"],
+            num: 0,
+            count:0
+        },
+        methods: {
+            tab(index) {
+                this.num = index;
+            },
+            lists(index) {
+                this.count = index;
+            }
+
+        }
+    });
+</script>
+</body>
+</html>

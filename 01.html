@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue2.6.10.js"></script>
+    <style>
+        .add
+        {
+            background-color: #cccccc;
+            width: 30px;
+            border: 1px solid #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <ys-input v-for(index,item):key(index) oninput="value.replace(/\D/g,'')"></ys-input>
+</div>
+<script>
+    var ysInput={
+        template:`<div><button @click="add(index)" :class="bg">+</button><input type="text" v-model="count"><button @click="reduce(index)" :class="bg">-</button></div>`,
+        props:['inputvalue'],
+        data(){
+            return{count:1,
+                bg:{'add':true},
+            }
+        },
+        methods:{
+            add(){
+                this.count++;
+            },
+            reduce(){
+                if(this.count==1){
+                    this.count==1;
+                    alert("数量为1，不能再减")
+                }else {
+                    this.count-=1;
+                }
+
+            }
+
+        },
+        watch:{
+            count:function () {
+                var reg= new RegExp(/^\D\d|\d\D|\D$/);
+                if (this.count < 1) {
+                    alert('数量为1，不能再减')
+                    this.count=1;
+                }
+                if(reg.test(this.count)){
+                    alert('输入数据不合法');
+                    this.count=1;
+                }
+
+
+            }
+        }
+    }
+    new Vue({
+        el:'#app',
+        components:{'ys-input':ysInput}
+    })
+</script>
+</body>
+</html>

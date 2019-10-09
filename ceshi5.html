@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .btn{
+                background-color: #ffffff;
+                border:1px solid #0080ff;
+                width:100px;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo">
+            <input type="button" value="按钮" class="btn" @mouseover="mouseOver" @mouseleave="mouseLeave" :style="active">
+        </div>
+        <script>
+            
+            new Vue({
+                el:"#demo",
+                data:{
+                        active:''
+                },
+                methods:{
+                    mouseOver: function () {
+                        this.active='background-color: #0080ff;color: #ffffff';
+                    },
+                    mouseLeave: function () {
+                        this.active='';
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
