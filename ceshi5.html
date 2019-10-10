@@ -16,7 +16,7 @@
     </head>
     <body>
         <div id="demo">
-            <input type="button" value="按钮" class="btn" @mouseover="mouseOver" @mouseleave="mouseLeave" :style="active">
+            <input type="button" value="按钮" class="btn" @mouseover="mouseOver" @mouseleave="mouseLeave" :style="active" @click="sex()">
         </div>
         <script>
             
@@ -31,6 +31,9 @@
                     },
                     mouseLeave: function () {
                         this.active='';
+                    },
+                    sex:function () {
+                        alert("sex");
                     }
                 }
             })
